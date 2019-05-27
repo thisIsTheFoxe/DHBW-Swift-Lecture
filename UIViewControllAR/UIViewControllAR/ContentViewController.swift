@@ -14,23 +14,15 @@ class ContentViewController: UIViewController {
         super.viewDidLoad()
         //view.backgroundColor = .yellow
         //view.backgroundColor = .blue
-        let rec = UITapGestureRecognizer(target: self, action: #selector(ContentViewController.a))
-        //vvvvvv does NOT work
-        view.addGestureRecognizer(rec)
- 
-//        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-//        //label.addGestureRecognizer(rec)
-//        label.center = view.center
-//        label.font = UIFont.systemFont(ofSize: 50)
-//        label.textColor = .red
-//        label.text = "HAHAHA!"
-        //view.addSubview(label)
         
-        // Do any additional setup after loading the view.
+        //DO NOT TOUCH THOSE TWO LINES! Without them the touches methods won't be called!
+        let rec = UITapGestureRecognizer(target: self, action: #selector(ContentViewController.a))
+        view.addGestureRecognizer(rec)
     }
 
     
     @IBAction func changeColor(_ sender: Any) {
+        //testing if touch is working
         print("W O R K I NG!!")
         if view.backgroundColor == .red{
             view.backgroundColor = .white
@@ -39,11 +31,14 @@ class ContentViewController: UIViewController {
         }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //should be called if touched
         print(touches.first?.location(in: view) as Any)
     }
     
-    //WORKS!! OwO
+    
     @objc func a(sender: UITapGestureRecognizer) {
+        //doesn't actually do anything.. but it won't work without the recognizer
         print(sender.location(in: view))
     }
+ 
 }

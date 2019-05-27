@@ -12,17 +12,16 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
-    @IBOutlet var sceneView: ARSCNView!
     var vc: UIViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         vc = storyboard.instantiateViewController(withIdentifier: "ContentVC")
-
+        //getting the VC from the storyboard (todo: make content in extra storyboard and load the whole storyboard)
         
         let plane = SCNPlane(width: 0.5, height: 0.5)
-        plane.materials.first?.diffuse.contents = vc.view
+        plane.materials.first?.diffuse.contents = vc.view   //<-- this is the important line
         
         /*
         let cam = SCNNode()
@@ -36,32 +35,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let pNore = SCNNode(geometry: plane)
         let scnV = ARSCNView(frame: view.frame)
-        scnV.session.run(ARWorldTrackingConfiguration(), options: [])
         scnV.scene.rootNode.addChildNode(pNore)
         
-        //DON'T SET THE LIVE VIEW TO ANYTHING ELSE!! EVER!!!! JUST CRAMP EVERYTHING INTO THE FREAKIN LIVEVIEW.SWIFT AND PRETEND U DONT CARE!!!! WTF PG?!?
-        //actually I have no freakin' idea anymore pls help me quit lif naoo....
-        view = scnV
+        let config = ARWorldTrackingConfiguration()
+        //config.planeDetection = [.horizontal, .vertical]
+        scnV.session.run(config, options: [])
+        view = scnV //if this get changed it might not work anymore..
         
-        vc.view.layoutSubviews()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Create a session configuration
-        //let configuration = ARWorldTrackingConfiguration()
-        //configuration.planeDetection = [.horizontal]
-        
-        // Run the view's session
-        //sceneView.session.run(configuration)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Pause the view's session
-        //sceneView.session.pause()
+        vc.view.layoutSubviews()    //update constraints
     }
 
     // MARK: - ARSCNViewDelegate
