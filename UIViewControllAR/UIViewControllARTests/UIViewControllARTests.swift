@@ -1,15 +1,15 @@
 //
-//  ARKitTests.swift
-//  ARKitTests
+//  UIViewControllARTests.swift
+//  UIViewControllARTests
 //
 //  Created by Henrik Storch on 27.05.19.
 //  Copyright © 2019 Henrik Storch. All rights reserved.
 //
 
 import XCTest
-@testable import ARKit
+@testable import UIViewControllAR
 
-class ARKitTests: XCTestCase {
+class UIViewControllARTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

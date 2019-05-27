@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  ARKit
+//  UIViewControllAR
 //
 //  Created by Henrik Storch on 27.05.19.
 //  Copyright © 2019 Henrik Storch. All rights reserved.
