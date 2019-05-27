@@ -13,38 +13,55 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    var vc: UIViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        vc = storyboard.instantiateViewController(withIdentifier: "ContentVC")
+
         
-        // Set the view's delegate
-        sceneView.delegate = self
+        let plane = SCNPlane(width: 0.5, height: 0.5)
+        plane.materials.first?.diffuse.contents = vc.view
         
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+        /*
+        let cam = SCNNode()
+        cam.position = SCNVector3(0, 0, 0)
+        cam.camera = SCNCamera()
         
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        pNore.position = SCNVector3(0, 0, -100)
+         scnV.scene.rootNode.camera = cam.camera
+         scnV.allowsCameraControl = true
+        */
         
-        // Set the scene to the view
-        sceneView.scene = scene
+        let pNore = SCNNode(geometry: plane)
+        let scnV = ARSCNView(frame: view.frame)
+        scnV.session.run(ARWorldTrackingConfiguration(), options: [])
+        scnV.scene.rootNode.addChildNode(pNore)
+        
+        //DON'T SET THE LIVE VIEW TO ANYTHING ELSE!! EVER!!!! JUST CRAMP EVERYTHING INTO THE FREAKIN LIVEVIEW.SWIFT AND PRETEND U DONT CARE!!!! WTF PG?!?
+        //actually I have no freakin' idea anymore pls help me quit lif naoo....
+        view = scnV
+        
+        vc.view.layoutSubviews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
-
+        //let configuration = ARWorldTrackingConfiguration()
+        //configuration.planeDetection = [.horizontal]
+        
         // Run the view's session
-        sceneView.session.run(configuration)
+        //sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         // Pause the view's session
-        sceneView.session.pause()
+        //sceneView.session.pause()
     }
 
     // MARK: - ARSCNViewDelegate
