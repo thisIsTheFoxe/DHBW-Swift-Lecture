@@ -32,9 +32,16 @@ class ContentViewController: UIViewController {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //should be called if touched
-        print(touches.first?.location(in: view) as Any)
+        //print("Began",touches.first?.location(in: view) as Any)
     }
     
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //print("Move",touches.first?.location(in: view) as Any)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //print("End",touches.first?.location(in: view) as Any)
+    }
     
     @objc func a(sender: UITapGestureRecognizer) {
         //doesn't actually do anything.. but it won't work without the recognizer
