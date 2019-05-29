@@ -17,6 +17,7 @@ class ContentViewController: UIViewController {
         
         //DO NOT TOUCH THOSE TWO LINES! Without them the touches methods won't be called!
         let rec = UITapGestureRecognizer(target: self, action: #selector(ContentViewController.a))
+            //UIPinchGestureRecognizer(target: self, action: #selector(ContentViewController.a))
         view.addGestureRecognizer(rec)
     }
 
@@ -36,7 +37,12 @@ class ContentViewController: UIViewController {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //print("Move",touches.first?.location(in: view) as Any)
+        print("Move",touches.first?.location(in: view) as Any)
+        /*
+        if (touches.count > 1) {
+            print("MULTYTOUCH BBY!!")
+        }
+ */
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
