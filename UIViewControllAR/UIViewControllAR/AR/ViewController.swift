@@ -16,8 +16,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        vc = storyboard.instantiateViewController(withIdentifier: "ContentVC")
+        let storyboard = UIStoryboard(name: "ContentStoryboard", bundle: nil)
+        guard let vc = storyboard.instantiateInitialViewController() else {
+            return
+        }
         //getting the VC from the storyboard (todo: make content in extra storyboard and load the whole storyboard)
         
         let plane = SCNPlane(width: 0.5, height: 0.5)
