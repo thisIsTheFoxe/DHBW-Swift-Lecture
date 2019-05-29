@@ -17,6 +17,7 @@ class ContentViewController: UIViewController {
         
         //DO NOT TOUCH THOSE TWO LINES! Without them the touches methods won't be called!
         let rec = UITapGestureRecognizer(target: self, action: #selector(ContentViewController.a))
+            //UIPinchGestureRecognizer(target: self, action: #selector(ContentViewController.a))
         view.addGestureRecognizer(rec)
     }
 
@@ -32,9 +33,21 @@ class ContentViewController: UIViewController {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //should be called if touched
-        print(touches.first?.location(in: view) as Any)
+        //print("Began",touches.first?.location(in: view) as Any)
     }
     
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("Move",touches.first?.location(in: view) as Any)
+        /*
+        if (touches.count > 1) {
+            print("MULTYTOUCH BBY!!")
+        }
+ */
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //print("End",touches.first?.location(in: view) as Any)
+    }
     
     @objc func a(sender: UITapGestureRecognizer) {
         //doesn't actually do anything.. but it won't work without the recognizer
