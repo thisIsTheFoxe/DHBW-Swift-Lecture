@@ -14,36 +14,46 @@ class ItemViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet weak var thumbnailView: UIImageView!
     @IBOutlet weak var itemPickerView: UIPickerView!
     
-    var item: ARItem!
+    var item: ARItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        item = ARItem()
+        guard let _ = item else {
+            item = ARItem()
+            return
+        }
+        
         // Do any additional setup after loading the view.
     }
+
+
     
     @IBAction func sizeChanged(_ sender: UISlider) {
-        item.scale = SCNVector3(sender.value, sender.value, sender.value)
+        item?.scale = SCNVector3(sender.value, sender.value, sender.value)
     }
     
     @IBAction func changeItemColor(_ sender: UIButton) {
-        item.geometry?.materials.first?.diffuse.contents = sender.backgroundColor
+        item?.geometry?.materials.first?.diffuse.contents = sender.backgroundColor
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("hmm")
     }
     
     // MARK: - UIButtons
 
     @IBAction func rotateItem(_ sender: Any) {
-        item.rotate()
+        item?.rotate()
     }
     
     @IBAction func destroyItem(_ sender: Any) {
-        item.destroy()
+        item?.destroy()
     }
     
     @IBAction func reCreateItem(_ sender: Any) {
-        item.reCreate()
+        item?.reCreate()
     }
     
     
@@ -54,16 +64,16 @@ class ItemViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return ItemTypes.AllCases().count
+        return ItemTypes.allCases.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return ItemTypes.AllCases()[row].rawValue
+        return ItemTypes.allCases[row].rawValue
         
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        item.changeType(to: ItemTypes.AllCases()[row])
+        item?.changeType(to: ItemTypes.allCases[row])
     }
     
 }

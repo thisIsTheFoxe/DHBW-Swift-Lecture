@@ -19,6 +19,9 @@
 		D5747179229C3C91005BAECC /* UIViewControllARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5747178229C3C91005BAECC /* UIViewControllARTests.swift */; };
 		D5747184229C3C91005BAECC /* UIViewControllARUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5747183229C3C91005BAECC /* UIViewControllARUITests.swift */; };
 		D5747192229C3DAA005BAECC /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5747191229C3DAA005BAECC /* ContentViewController.swift */; };
+		D5B07BC022A02735005C070B /* Destroy.scnp in Resources */ = {isa = PBXBuildFile; fileRef = D5B07BBE22A02734005C070B /* Destroy.scnp */; };
+		D5B07BC122A02735005C070B /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B07BBF22A02734005C070B /* bokeh.png */; };
+		D5B07BC322A02A69005C070B /* ReCreate.scnp in Resources */ = {isa = PBXBuildFile; fileRef = D5B07BC222A02A69005C070B /* ReCreate.scnp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		D5747183229C3C91005BAECC /* UIViewControllARUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllARUITests.swift; sourceTree = "<group>"; };
 		D5747185229C3C91005BAECC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5747191229C3DAA005BAECC /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		D5B07BBE22A02734005C070B /* Destroy.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Destroy.scnp; sourceTree = "<group>"; };
+		D5B07BBF22A02734005C070B /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bokeh.png; sourceTree = "<group>"; };
+		D5B07BC222A02A69005C070B /* ReCreate.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = ReCreate.scnp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		D52E128A22A02E3C0078D523 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D574716A229C3C91005BAECC /* Assets.xcassets */,
+				D5B07BBE22A02734005C070B /* Destroy.scnp */,
+				D5B07BC222A02A69005C070B /* ReCreate.scnp */,
+				D5B07BBF22A02734005C070B /* bokeh.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		D5747155229C3C8F005BAECC = {
 			isa = PBXGroup;
 			children = (
@@ -136,10 +153,10 @@
 			isa = PBXGroup;
 			children = (
 				D5747161229C3C8F005BAECC /* AppDelegate.swift */,
+				D52E128A22A02E3C0078D523 /* Resources */,
 				D522F938229F2EA30056069E /* AR */,
 				D522F939229F2EB80056069E /* Content */,
 				D522F93C229FE5680056069E /* Models */,
-				D574716A229C3C91005BAECC /* Assets.xcassets */,
 				D574716C229C3C91005BAECC /* LaunchScreen.storyboard */,
 				D574716F229C3C91005BAECC /* Info.plist */,
 			);
@@ -270,8 +287,11 @@
 			files = (
 				D522F935229F25450056069E /* ContentStoryboard.storyboard in Resources */,
 				D574716E229C3C91005BAECC /* LaunchScreen.storyboard in Resources */,
+				D5B07BC322A02A69005C070B /* ReCreate.scnp in Resources */,
+				D5B07BC022A02735005C070B /* Destroy.scnp in Resources */,
 				D574716B229C3C91005BAECC /* Assets.xcassets in Resources */,
 				D5747169229C3C8F005BAECC /* Main.storyboard in Resources */,
+				D5B07BC122A02735005C070B /* bokeh.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

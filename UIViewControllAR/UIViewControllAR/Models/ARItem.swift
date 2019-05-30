@@ -27,20 +27,34 @@ class ARItem: SCNNode{
     
     func rotate() {
         //TODO: test
-        let delay = SCNAction.wait(duration: 0.1)
-        let rX = SCNAction.rotateBy(x: CGFloat.pi, y: 0, z: 0, duration: 0.5)
-        let rY = SCNAction.rotateBy(x: 0, y: CGFloat.pi, z: 0, duration: 0.5)
-        let rZ = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat.pi, duration: 0.5)
+        let delay = SCNAction.wait(duration: 0.25)
+        let rX = SCNAction.rotateBy(x: CGFloat.pi, y: 0, z: 0, duration: 1)
+        let rY = SCNAction.rotateBy(x: 0, y: CGFloat.pi, z: 0, duration: 1)
+        let rZ = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat.pi, duration: 1)
         
         self.runAction(SCNAction.group([rX, .sequence([delay, .group([rY, .sequence([delay, rZ])])])]))
     }
     
     func destroy()  {
-        //TODO: implement destry action with "animation"
+        //todo: implement destry action with "animation"
+        guard let explosion = SCNParticleSystem(named: "Destroy", inDirectory: nil) else{
+            return
+        }
+        self.addParticleSystem(explosion)
+        self.runAction(.sequence([.fadeOut(duration: 0.5), .customAction(duration: 0, action: { (node, time) in
+            self.removeAllParticleSystems()
+        })]))
     }
     
     func reCreate()  {
-        //TODO: implement destry action with "animation"
+        //todo: implement create action with "animation"
+        guard let explosion = SCNParticleSystem(named: "ReCreate", inDirectory: nil) else{
+            return
+        }
+        self.addParticleSystem(explosion)
+        self.runAction(.sequence([.fadeIn(duration: 0.5), .customAction(duration: 0, action: { (node, time) in
+            self.removeAllParticleSystems()
+        })]))
     }
     
 }
