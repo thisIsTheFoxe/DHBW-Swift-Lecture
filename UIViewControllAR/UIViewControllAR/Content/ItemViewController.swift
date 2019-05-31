@@ -10,6 +10,7 @@ import ARKit
 
 class ItemViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    @IBOutlet var bgButtons: [UIButton]!
     
     @IBOutlet weak var thumbnailView: UIImageView!
     @IBOutlet weak var itemPickerView: UIPickerView!
@@ -34,8 +35,14 @@ class ItemViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     @IBAction func changeItemColor(_ sender: UIButton) {
-        item?.geometry?.materials.first?.diffuse.contents = sender.backgroundColor
+        for btn in bgButtons{
+            btn.isEnabled = true
+            btn.backgroundColor = btn.backgroundColor?.withAlphaComponent(1)
+        }
         
+        item?.geometry?.materials.first?.diffuse.contents = sender.backgroundColor
+        sender.backgroundColor = sender.backgroundColor?.withAlphaComponent(0.5)
+        sender.isEnabled = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
