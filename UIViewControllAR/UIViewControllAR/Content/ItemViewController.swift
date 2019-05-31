@@ -24,7 +24,7 @@ class ItemViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             item = ARItem()
             return
         }
-        
+        thumbnailView.image = UIImage(named: ItemTypes.allCases.first!.rawValue)
         // Do any additional setup after loading the view.
     }
 
@@ -80,7 +80,9 @@ class ItemViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        item?.changeType(to: ItemTypes.allCases[row])
+        let newItemType = ItemTypes.allCases[row]
+        item?.changeType(to: newItemType)
+        thumbnailView.image = UIImage(named: newItemType.rawValue)
     }
     
 }
