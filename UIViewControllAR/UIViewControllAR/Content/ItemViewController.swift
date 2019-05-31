@@ -24,7 +24,9 @@ class ItemViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             item = ARItem()
             return
         }
-        thumbnailView.image = UIImage(named: ItemTypes.allCases.first!.rawValue)
+        DispatchQueue.main.async {
+            self.thumbnailView.image = UIImage(named: ItemTypes.allCases.first!.rawValue)
+        }
         // Do any additional setup after loading the view.
     }
 
