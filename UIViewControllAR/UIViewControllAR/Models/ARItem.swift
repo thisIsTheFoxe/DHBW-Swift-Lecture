@@ -10,10 +10,13 @@ import ARKit
 
 class ARItem: SCNNode{
     
+    var color = UIColor.white
+    var itemSize = SCNVector3(0.5, 0.5, 0.5)
+    
     init(type: ItemTypes = ItemTypes.allCases.first!){
         super.init()
         self.geometry = type.getGeometry()
-        
+        self.scale = itemSize
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -22,7 +25,20 @@ class ARItem: SCNNode{
     
     
     func changeType(to newType: ItemTypes){
-        self.geometry = newType.getGeometry()
+        let geo = newType.getGeometry()
+        geo.materials.first?.diffuse.contents = color
+        self.geometry = geo
+    }
+    
+    func changeColor(to newColor: UIColor?) {
+        let newColor = newColor ?? .white
+        self.color = newColor
+        self.geometry?.materials.first?.diffuse.contents = newColor
+    }
+    
+    func scale(to scalar: Float){
+        itemSize = SCNVector3(scalar, scalar, scalar)
+        self.scale = itemSize
     }
     
     func rotate() {

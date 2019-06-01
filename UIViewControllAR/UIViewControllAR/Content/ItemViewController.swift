@@ -33,7 +33,7 @@ class ItemViewController: UIViewController, UIPickerViewDataSource, UIPickerView
 
     
     @IBAction func sizeChanged(_ sender: UISlider) {
-        item?.scale = SCNVector3(sender.value, sender.value, sender.value)
+        item?.scale(to: sender.value)
     }
     
     @IBAction func changeItemColor(_ sender: UIButton) {
@@ -42,7 +42,7 @@ class ItemViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             btn.backgroundColor = btn.backgroundColor?.withAlphaComponent(1)
         }
         
-        item?.geometry?.materials.first?.diffuse.contents = sender.backgroundColor
+        item?.changeColor(to: sender.backgroundColor) 
         sender.backgroundColor = sender.backgroundColor?.withAlphaComponent(0.5)
         sender.isEnabled = false
     }
