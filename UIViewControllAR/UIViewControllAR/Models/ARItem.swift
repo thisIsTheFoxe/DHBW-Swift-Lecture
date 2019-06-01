@@ -60,7 +60,7 @@ class ARItem: SCNNode{
 }
 
 enum ItemTypes: String, CaseIterable{
-    case Box, Ball
+    case Box, Ball, Torus
     
     func getGeometry() -> SCNGeometry {
         switch self {
@@ -68,6 +68,8 @@ enum ItemTypes: String, CaseIterable{
             return SCNSphere(radius: 0.5)
         case .Box:
             return SCNBox(width: 0.5, height: 0.5, length: 0.5, chamferRadius: 0)
+        case .Torus:
+            return SCNTorus(ringRadius: 0.25, pipeRadius: 0.125)
         default:
             return SCNGeometry()
         }

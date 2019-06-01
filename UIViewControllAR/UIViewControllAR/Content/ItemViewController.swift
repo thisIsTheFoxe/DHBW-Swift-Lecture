@@ -10,6 +10,7 @@ import ARKit
 
 class ItemViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    @IBOutlet var bgButtons: [UIButton]!
     
     @IBOutlet weak var thumbnailView: UIImageView!
     @IBOutlet weak var itemPickerView: UIPickerView!
@@ -23,7 +24,9 @@ class ItemViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             item = ARItem()
             return
         }
-        
+        DispatchQueue.main.async {
+            self.thumbnailView.image = UIImage(named: ItemTypes.allCases.first!.rawValue)
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -34,8 +37,14 @@ class ItemViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     @IBAction func changeItemColor(_ sender: UIButton) {
-        item?.geometry?.materials.first?.diffuse.contents = sender.backgroundColor
+        for btn in bgButtons{
+            btn.isEnabled = true
+            btn.backgroundColor = btn.backgroundColor?.withAlphaComponent(1)
+        }
         
+        item?.geometry?.materials.first?.diffuse.contents = sender.backgroundColor
+        sender.backgroundColor = sender.backgroundColor?.withAlphaComponent(0.5)
+        sender.isEnabled = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -73,7 +82,9 @@ class ItemViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        item?.changeType(to: ItemTypes.allCases[row])
+        let newItemType = ItemTypes.allCases[row]
+        item?.changeType(to: newItemType)
+        thumbnailView.image = UIImage(named: newItemType.rawValue)
     }
     
 }

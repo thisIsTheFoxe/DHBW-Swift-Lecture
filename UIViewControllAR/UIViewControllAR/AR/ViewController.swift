@@ -24,7 +24,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             return
         }
         itemNode = ARItem()
-        itemNode.position = SCNVector3(0.5, 0, -1)
+        itemNode.position = SCNVector3(0.75, 0, -1)
         scnV.scene.rootNode.addChildNode(itemNode)
         tempVC.item = itemNode
         vc = tempVC
