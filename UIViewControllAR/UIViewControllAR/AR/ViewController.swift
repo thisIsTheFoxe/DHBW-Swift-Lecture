@@ -12,6 +12,7 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
+    @IBOutlet weak var statusLabel: UILabel!
     var vc: ItemViewController!
     var itemNode: ARItem!
     
@@ -64,6 +65,29 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return node
     }
 */
+    
+    func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
+        switch camera.trackingState {
+        case .normal:
+            statusLabel.textColor = .green
+            statusLabel.text = "Status: Normal"
+            
+        case .notAvailable:
+            statusLabel.textColor = .red
+            statusLabel.text = "AR is not working on this device!"
+
+        case .limited(let reason):
+            statusLabel.textColor = .orange
+            switch reason{
+                case .excessiveMotion: statusLabel.text = "Status: U R moving too fast!"
+                case .initializing: statusLabel.text = "Preparing..."
+                case .insufficientFeatures: statusLabel.text = "Status: Bad AR-Enviroment!"
+                case .relocalizing: statusLabel.text = "Status: Searching for known area..."
+            @unknown default:
+                fatalError("New things have been implemented!")
+            }
+        }
+    }
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
