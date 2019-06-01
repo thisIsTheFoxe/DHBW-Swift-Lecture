@@ -86,8 +86,6 @@ enum ItemTypes: String, CaseIterable{
             return SCNBox(width: 0.5, height: 0.5, length: 0.5, chamferRadius: 0)
         case .Torus:
             return SCNTorus(ringRadius: 0.25, pipeRadius: 0.125)
-        default:
-            return SCNGeometry()
         }
     }
 }
