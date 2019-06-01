@@ -12,14 +12,23 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
-    var vc: UIViewController!
+    var vc: ItemViewController!
+    var itemNode: ARItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        vc = storyboard.instantiateViewController(withIdentifier: "ContentVC")
-        //getting the VC from the storyboard (todo: make content in extra storyboard and load the whole storyboard)
+        let scnV = ARSCNView(frame: view.frame)
         
+        let storyboard = UIStoryboard(name: "ContentStoryboard", bundle: nil)
+        guard let tempVC = storyboard.instantiateInitialViewController() as? ItemViewController else {
+            return
+        }
+        itemNode = ARItem()
+        itemNode.position = SCNVector3(0.5, 0, -1)
+        scnV.scene.rootNode.addChildNode(itemNode)
+        tempVC.item = itemNode
+        vc = tempVC
+
         let plane = SCNPlane(width: 0.5, height: 0.5)
         plane.materials.first?.diffuse.contents = vc.view   //<-- this is the important line
         
@@ -33,9 +42,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
          scnV.allowsCameraControl = true
         */
         
-        let pNore = SCNNode(geometry: plane)
-        let scnV = ARSCNView(frame: view.frame)
-        scnV.scene.rootNode.addChildNode(pNore)
+        let pNode = SCNNode(geometry: plane)
+        pNode.position = SCNVector3(0, 0, -1)
+        scnV.scene.rootNode.addChildNode(pNode)
         
         let config = ARWorldTrackingConfiguration()
         //config.planeDetection = [.horizontal, .vertical]
