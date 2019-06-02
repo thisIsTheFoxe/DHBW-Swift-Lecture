@@ -10,23 +10,25 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
     @IBOutlet weak var statusLabel: UILabel!
     var vc: ItemViewController!
     var itemNode: ARItem!
+    @IBOutlet weak var sceneView: ARSCNView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scnV = ARSCNView(frame: view.frame)
+        sceneView.session.delegate = self
         
         let storyboard = UIStoryboard(name: "ContentStoryboard", bundle: nil)
         guard let tempVC = storyboard.instantiateInitialViewController() as? ItemViewController else {
             return
         }
+        
         itemNode = ARItem()
         itemNode.position = SCNVector3(0.75, 0, -1)
-        scnV.scene.rootNode.addChildNode(itemNode)
+        sceneView.scene.rootNode.addChildNode(itemNode)
         tempVC.item = itemNode
         vc = tempVC
 
@@ -45,13 +47,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let pNode = SCNNode(geometry: plane)
         pNode.position = SCNVector3(0, 0, -1)
-        scnV.scene.rootNode.addChildNode(pNode)
+        sceneView.scene.rootNode.addChildNode(pNode)
         
         let config = ARWorldTrackingConfiguration()
         //config.planeDetection = [.horizontal, .vertical]
-        scnV.session.run(config, options: [])
-        view = scnV //if this get changed it might not work anymore..
-        
+        sceneView.session.run(config, options: [])
+                
         vc.view.layoutSubviews()    //update constraints
     }
 

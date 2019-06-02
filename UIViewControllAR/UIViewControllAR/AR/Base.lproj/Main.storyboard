@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ObZ-XR-mGz">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BV1-FR-VrT" id="fOX-xd-qre"/>
+                                </connections>
+                            </arscnView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Apo-8S-cFr">
                                 <rect key="frame" x="20" y="64" width="374" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -28,18 +34,23 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Apo-8S-cFr" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="20" id="0Mi-RT-5yW"/>
+                            <constraint firstItem="ObZ-XR-mGz" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="6C3-Be-srB"/>
+                            <constraint firstItem="ObZ-XR-mGz" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="Frg-Ag-L5Q"/>
+                            <constraint firstItem="ObZ-XR-mGz" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="Uh3-hR-xar"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="Apo-8S-cFr" secondAttribute="trailing" constant="20" id="gfx-Rp-77f"/>
                             <constraint firstItem="Apo-8S-cFr" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="20" id="iaO-jD-o5K"/>
+                            <constraint firstAttribute="bottom" secondItem="ObZ-XR-mGz" secondAttribute="bottom" id="jNa-SS-6Bp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
                     <connections>
+                        <outlet property="sceneView" destination="ObZ-XR-mGz" id="mRW-dZ-IyB"/>
                         <outlet property="statusLabel" destination="Apo-8S-cFr" id="8k1-Xx-kdz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="303" y="23"/>
+            <point key="canvasLocation" x="302.89855072463769" y="22.767857142857142"/>
         </scene>
     </scenes>
 </document>
